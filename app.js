@@ -3,11 +3,14 @@ This is the starting module of the application. Here have a look at the package.
 */
 const express=require('express');
 const bodyParse=require('body-parser');
+const cors=require('cors');
 
 const app=express();
 const userRoute=require('./userRouter');
 
 app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({extended:false}));
+app.use(cors());
 app.use('/api',userRoute);
 
 const PORT=process.env.PORT||3000;
